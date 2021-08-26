@@ -32,19 +32,19 @@ else
 class Singleton
 {
   static instance;
-  static getInstance()
+  constructor()
   {
     if (!Singleton.instance)
     {
-        Singleton.instance = new Singleton();
+        Singleton.instance = this;
     }
     return Singleton.instance;
   }
 }
 
 
-let s1 = Singleton.getInstance();
-let s2 = Singleton.getInstance();
+let s1 = new Singleton();
+let s2 = new Singleton();
 
 if (s1 === s2)
 {
@@ -59,29 +59,26 @@ else
 //////////////////////////////////////////////
 ///////////// singleton Cat//////////
 
-class SingletonCat
+class SingleCat
 {
+  static instance;
   constructor(name)
   {
     this.name = name
-  }
-  static instance;
-  static getInstance(name)
-  {
-    if (!SingletonCat.instance)
+    if (!SingleCat.instance)
     {
-        SingletonCat.instance = new SingletonCat(name);
+        SingleCat.instance = this;
     }
-    return SingletonCat.instance;
-  }
+    return SingleCat.instance;
+  }  
   speak()
   {
     console.log(this.name,'meow')
   }
 }
 
-let sKitty = SingletonCat.getInstance('kitty')
-let sNabi = SingletonCat.getInstance('nabi')
+let sKitty = new SingleCat('kitty')
+let sNabi = new SingleCat('nabi')
 sKitty.speak()
 sNabi.speak()
 
